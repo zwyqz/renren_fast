@@ -24,7 +24,7 @@ whoami'''
                          sh 'ssh root@192.168.242.129'
                          sh 'echo hello'
                          sh 'pwd'
-                         sh 'scp renren-fast/target/renren-fast.jar root@192.168.242.129:/root/deploy/'
+                         sh 'scp README.md root@192.168.242.129:/root/deploy/'
                      }
                }
 
