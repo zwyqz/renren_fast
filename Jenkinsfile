@@ -23,7 +23,7 @@ whoami'''
                    sshagent(credentials: ['deploy_ssh']) {
                          sh('pwd')
                          sh "ssh  -p 28488 172.93.42.135  'touch /tmp/${UUID}'"
-                         sh 'scp README.md -p 28488 172.93.42.135:/root/deploy/'
+                         sh 'scp README.md -P 28488 172.93.42.135:/root/deploy/'
                      }
                }
 
