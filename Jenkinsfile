@@ -19,7 +19,7 @@ whoami'''
 
       }
     }
-    stage('deploy') {
+    stage('deployRemote') {
          sshagent(credentials: ['70dea94e-5cae-4c8a-84e2-a88032a0fb35']) {
              sh 'ssh root@192.168.242.129'
              sh 'echo hello'
