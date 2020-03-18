@@ -1,9 +1,5 @@
 pipeline {
-   agent {
-      docker {
-        image 'maven:3-alpine'
-      }
-    }
+  agent any
   stages {
     stage('Build') {
       parallel {
@@ -22,16 +18,17 @@ whoami'''
 
       }
     }
-    stage('deployRemote') {
-        steps {
-                   sshagent(credentials: ['deploy_ssh']) {
-                         sh('pwd')
-                         sh('ls')
-                         sh "ssh  -p 28488 172.93.42.135  'touch /tmp/${UUID}'"
-                         sh 'scp -P 28488  README.md 172.93.42.135:/root/deploy/test'
-                     }
-               }
 
+    stage('deployRemote') {
+      steps {
+        sshagent(credentials: ['deploy_ssh']) {
+          sh 'pwd'
+          sh 'ls'
+          sh "ssh  -p 28488 172.93.42.135  'touch /tmp/${UUID}'"
+          sh 'scp -P 28488  README.md 172.93.42.135:/root/deploy/test'
+        }
+
+      }
     }
 
   }
