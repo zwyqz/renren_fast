@@ -25,7 +25,7 @@ whoami'''
          sh '''docker build  -t zwy/renren_fast:20190202 .
             docker stop renren_fast
          docker rm renren_fast
-         docker run -d --restart  unless-stopped --net=host -name renren_fast   --privileged=true -e "TZ=Asia/Shanghai" zwy/renren_fast'''
+         docker run -d --restart  unless-stopped --net=host --name renren_fast   --privileged=true -e "TZ=Asia/Shanghai" zwy/renren_fast:20190202'''
       }
     }
     stage('deployRemote') {
