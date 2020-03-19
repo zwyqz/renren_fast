@@ -22,6 +22,7 @@ whoami'''
     stage('dockerBuild') {
       steps {
          sh 'docker build  -t zwy/renren_fast:20190202 . '
+         sh 'docker run -d --restart  unless-stopped --net=host   --privileged=true -e "TZ=Asia/Shanghai" aa:2019'
       }
     }
     stage('deployRemote') {
