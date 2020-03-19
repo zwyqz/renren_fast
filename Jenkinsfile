@@ -6,7 +6,6 @@ pipeline {
         stage('Build') {
           steps {
             sh 'whoami'
-            sh 'mvn -B -DskipTests clean package'
           }
         }
 
@@ -21,10 +20,10 @@ whoami'''
     }
     stage('dockerBuild') {
       steps {
-         sh 'docker build  -t zwy/renren_fast:20190202 . '
-         sh 'docker stop renren_fast '
-         sh 'docker rm renren_fast '
-         sh 'docker run -d --restart  unless-stopped --net=host -name renren_fast   --privileged=true -e "TZ=Asia/Shanghai" aa:2019'
+         sh '''docker build  -t zwy/renren_fast:20190202 .
+            docker stop renren_fast
+         docker rm renren_fast
+         docker run -d --restart  unless-stopped --net=host -name renren_fast   --privileged=true -e "TZ=Asia/Shanghai" zwy/renren_fast'''
       }
     }
     stage('deployRemote') {
