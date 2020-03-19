@@ -21,7 +21,7 @@ whoami'''
     }
     stage('dockerBuild') {
       steps {
-        docker build  -t zwy/renren_fast:20190202 ./target/renren_fast.jar
+         sh 'docker build  -t zwy/renren_fast:20190202 . '
       }
     }
     stage('deployRemote') {
