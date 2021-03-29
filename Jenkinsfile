@@ -4,13 +4,7 @@ pipeline {
     stage('Build') {
       parallel {
         stage('Build') {
-          agent {
-            docker {
-              image 'maven:3-alpine'
-              args '-v /home/data/jenkinstest/mvnRepo:/root/.m2'
-            }
-
-          }
+          agent any 
           steps {
             sh 'whoami'
             sh 'mvn -B -DskipTests clean package'
