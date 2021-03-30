@@ -58,12 +58,12 @@ whoami'''
 
     stage('deployRemote') {
       steps {
-        sshagent(credentials: ['deploy_secrect']) {
+        sshagent(credentials: ['57380b0f-e616-42fc-8026-475db91849e8']) {
           sh 'pwd'
           sh 'ls'
-          sh "ssh  -p 28488 172.93.42.135  'touch /tmp/${UUID}'"
-          sh 'ssh  -p 28488 172.93.42.135  \'mkdir /tmp/deploy\''
-          sh 'scp -P 28488 -r * 172.93.42.135:/tmp/deploy1'
+          sh "ssh  -p 22 192.168.28.130  'touch /tmp/${UUID}'"
+          sh 'ssh  -p 22 192.168.28.130  \'mkdir /tmp/deploy\''
+          sh 'scp -P 22 -r * 192.168.28.130:/tmp/deploy1'
         }
 
       }
