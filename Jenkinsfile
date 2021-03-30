@@ -15,6 +15,7 @@ pipeline {
             sh 'whoami'
             sh 'mvn -B -DskipTests clean package'
             sh 'mvn --version'
+            sh 'docker build  -t zwy/renren_fast:20190202 .'
           }
         }
 
@@ -32,7 +33,6 @@ whoami'''
       steps {
         sh '''pwd
 ls -al
-docker build  -t zwy/renren_fast:20190202 .
          docker run -d --restart  unless-stopped --net=host --name renren_fast   --privileged=true -e "TZ=Asia/Shanghai" zwy/renren_fast:20190202'''
       }
     }
