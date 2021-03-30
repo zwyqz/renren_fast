@@ -38,6 +38,10 @@ pipeline {
             sh '''pwd
 ls -al
 docker build  -t zwy/renren_fast:20190202$BUILD_ID .
+
+docker stop renren_fast || true && docker rm renren_fast   || true
+
+
 docker run -d --restart  unless-stopped --net=host --name renren_fast   --privileged=true -e "TZ=Asia/Shanghai" zwy/renren_fast:20190202$BUILD_ID'''
           }
         }
