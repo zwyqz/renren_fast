@@ -61,8 +61,8 @@ whoami'''
         sshagent(credentials: ['57380b0f-e616-42fc-8026-475db91849e8']) {
           sh 'pwd'
           sh 'ls'
-          sh "ssh  -p 22 192.168.28.130  'touch /tmp/123'"
-          sh 'ssh  -p 22 192.168.28.130  \'mkdir /tmp/deploy\''
+          sh 'ssh  -p 22 192.168.28.130  \'touch /tmp/123\''
+          sh 'ssh  -p 22 192.168.28.130  \'mkdir /tmp/deploy1\''
           sh 'scp -P 22 -r * 192.168.28.130:/tmp/deploy1'
         }
 
