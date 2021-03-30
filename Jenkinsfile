@@ -14,6 +14,7 @@ pipeline {
         sh 'mvn -B -DskipTests clean package'
         sh 'mvn --version'
         archiveArtifacts(artifacts: '**/*.jar,**/*.war', fingerprint: true)
+        stash(name: 'a.zip', includes: 'target/*.jar')
       }
     }
 
