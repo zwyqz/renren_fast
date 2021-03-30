@@ -17,6 +17,17 @@ pipeline {
         stash(name: 'a.zip', includes: 'target/*.jar')
       }
     }
+    stage('Test') {
+            steps {
+                echo 'Testing..'
+		        echo "$BRANCH_NAME"
+		        echo "$BUILD_ID"
+		        echo "$BUILD_DISPLAY_NAME"
+		        echo "$JOB_NAME"
+		        echo "$BUILD_TAG"
+		        echo "$JENKINS_HOME"
+            }
+        }
 
     stage('dockerBuild') {
       parallel {
