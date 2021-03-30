@@ -22,11 +22,11 @@ pipeline {
       parallel {
         stage('dockerBuild') {
           steps {
-           unstash 'a.zip'
-
+            unstash 'a.zip'
             sh '''pwd
 ls -al
-         docker run -d --restart  unless-stopped --net=host --name renren_fast   --privileged=true -e "TZ=Asia/Shanghai" zwy/renren_fast:20190202'''
+docker build  -t zwy/renren_fast:20190202 .
+docker run -d --restart  unless-stopped --net=host --name renren_fast   --privileged=true -e "TZ=Asia/Shanghai" zwy/renren_fast:20190202'''
           }
         }
 
