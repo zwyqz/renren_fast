@@ -13,7 +13,7 @@ pipeline {
         sh 'whoami'
         sh 'mvn -B -DskipTests clean package'
         sh 'mvn --version'
-        sh 'docker build  -t zwy/renren_fast:20190202 .'
+        sh 'docker.build -t zwy/renren_fast:20190202 .'
       }
     }
 
