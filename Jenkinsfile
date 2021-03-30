@@ -13,7 +13,6 @@ pipeline {
         sh 'whoami'
         sh 'mvn -B -DskipTests clean package'
         sh 'mvn --version'
-        stash 'target/*.jar'
         archiveArtifacts(artifacts: '**/*.jar,**/*.war', fingerprint: true)
       }
     }
