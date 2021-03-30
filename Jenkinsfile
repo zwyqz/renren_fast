@@ -10,7 +10,7 @@ pipeline {
               args '-v /home/data/jenkinstest/mvnRepo:/root/.m2'
             }
 
-          } 
+          }
           steps {
             sh 'whoami'
             sh 'mvn -B -DskipTests clean package'
@@ -30,7 +30,9 @@ whoami'''
 
     stage('dockerBuild') {
       steps {
-        sh '''docker build  -t zwy/renren_fast:20190202 .
+        sh '''pwd
+ls -al
+docker build  -t zwy/renren_fast:20190202 .
          docker run -d --restart  unless-stopped --net=host --name renren_fast   --privileged=true -e "TZ=Asia/Shanghai" zwy/renren_fast:20190202'''
       }
     }
