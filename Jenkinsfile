@@ -25,7 +25,6 @@ pipeline {
             sh '''pwd
 ls -al
          docker run -d --restart  unless-stopped --net=host --name renren_fast   --privileged=true -e "TZ=Asia/Shanghai" zwy/renren_fast:20190202'''
-            unstash 'target/*.jar'
             unstash 'a.zip'
           }
         }
