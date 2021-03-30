@@ -14,6 +14,7 @@ pipeline {
         sh 'mvn -B -DskipTests clean package'
         sh 'mvn --version'
         stash 'target/*.jar'
+        archiveArtifacts 'target/*.jar'
       }
     }
 
