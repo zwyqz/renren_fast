@@ -36,7 +36,7 @@ build-job:       # This job runs in the build stage, which runs first.
     - echo "Compile complete."
     # - mvn package -s ${MVN_SETTINGS_XML} ${MAVEN_OPTS}
     - pwd
-    - mvn clean package -DskipTests=true package 
+    - mvn $MAVEN_OPTS clean package -DskipTests=true package 
 
   only:
     # 只对master分支运行job
