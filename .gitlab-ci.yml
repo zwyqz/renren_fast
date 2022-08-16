@@ -22,7 +22,7 @@ stages:          # List of stages for jobs, and their order of execution
   - deploy
 
 variables:
-  MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository"
+  MAVEN_OPTS: "-D maven.repo.local=.m2/repository"
   # 公司私有的镜像仓库账号
   S_USERNAME: "xxx"
   # 公司私有的镜像仓库密码
@@ -37,7 +37,7 @@ build-job:       # This job runs in the build stage, which runs first.
     - echo "Compile complete."
     # - mvn package -s ${MVN_SETTINGS_XML} ${MAVEN_OPTS}
     - pwd
-    # - mvn $MAVEN_OPTS clean package -DskipTests=true package 
+    - mvn $MAVEN_OPTS clean package -DskipTests=true package 
 
   only:
     # 只对master分支运行job
@@ -83,7 +83,7 @@ job_copy:
         - ssh-keyscan  -p 28488  45.62.123.30 > ~/.ssh/known_hosts  //xxxx替换为远程服务器的地址
         - chmod 644 ~/.ssh/known_hosts
     script:
-        - ssh -p 28488 45.62.123.30  \'touch /tmp/deploy1\'
+        - ssh -p 28488 45.62.123.30  \'mkdir /tmp/deploy1\'
         - scp -P 28488 -r target/* 45.62.123.30:/tmp/deploy1
 
 job_deploy:
