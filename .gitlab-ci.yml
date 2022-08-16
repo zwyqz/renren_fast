@@ -19,7 +19,6 @@
 stages:          # List of stages for jobs, and their order of execution
   - build
   - test
-  - job_copy
   - deploy
 
 variables:
@@ -71,9 +70,7 @@ build-job:       # This job runs in the build stage, which runs first.
 
 job_copy:
     image: docker
-    stage: job_copy
-    tags:
-        - personal
+    stage: deploy
     before_script:
         - 'which ssh-agent || ( yum update -y && yum install openssh-client git -y ) '
         - eval $(ssh-agent -s)
