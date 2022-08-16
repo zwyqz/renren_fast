@@ -66,6 +66,23 @@ build-job:       # This job runs in the build stage, which runs first.
 #     - echo "Deploying application..."
 #     - echo "Application successfully deployed."
 
+
+job_copy:
+    stage: job_copy
+    tags:
+        - personal
+    before_script:
+        - 'which ssh-agent || ( yum update -y && yum install openssh-client git -y ) '
+        - eval $(ssh-agent -s)
+        - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+        - mkdir -p ~/.ssh
+        - chmod 700 ~/.ssh
+        - ssh-keyscan  -p 28488  45.62.123.30 > ~/.ssh/known_hosts  //xxxx替换为远程服务器的地址
+        - chmod 644 ~/.ssh/known_hosts
+    script:
+        - ssh -p 28488 45.62.123.30  \'touch /tmp/deploy1\'
+        - scp -P 28488 -r target/* 45.62.123.30:/tmp/deploy1
+
 job_deploy:
     image: docker
     stage: deploy
