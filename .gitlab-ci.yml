@@ -19,7 +19,9 @@
 stages:          # List of stages for jobs, and their order of execution
   - build
   - test
+  - job_copy
   - deploy
+
 variables:
   MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository"
   # 公司私有的镜像仓库账号
