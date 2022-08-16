@@ -21,3 +21,11 @@ build-job:       # This job runs in the build stage, which runs first.
     paths:
       # 可以指定到某个文件(这里指定到了jar包)，或者整个target/目录 可以用于下载
       - target/renren-fast.jar  
+job_deploy:
+    image: docker
+    stage: deploy
+    script:
+      - docker rmi $(docker images | awk '/^<none>/ { print $3 }')
+      - docker build -t appimages .
+      - if [ $(docker ps -aq --filter name=app-container) ]; then docker rm -f app-container;fi
+      - docker run -d -p 8080:80 --name app-container appimages      
