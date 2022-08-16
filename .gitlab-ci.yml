@@ -83,7 +83,7 @@ job_copy:
         - ssh-keyscan  -p 28488  45.62.123.30 > ~/.ssh/known_hosts  //xxxx替换为远程服务器的地址
         - chmod 644 ~/.ssh/known_hosts
     script:
-        - ssh -p 28488 45.62.123.30  \'mkdir /tmp/deploy1\'
+        - ssh -p 28488 45.62.123.30  mkdir /tmp/deploy1
         - scp -P 28488 -r target/* 45.62.123.30:/tmp/deploy1
 
 job_deploy:
