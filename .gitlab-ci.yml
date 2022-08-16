@@ -32,3 +32,21 @@ job_deploy:
       - docker run -d -p 8080:80 --name ${CONTAINER_NAME} ${IMAGE_NAME}  
       # 删除为none的images    
       - docker rmi $(docker images | awk '/^<none>/ { print $3 }')
+job_copy:
+    image: docker
+    stage: deploy
+    before_script:
+        - 'which ssh-agent || ( yum update -y && yum install openssh-client git -y ) '
+        - eval $(ssh-agent -s)
+        - echo $SSH_PRIVATE_KEY  |  base64 -d
+        - echo $SSH_PRIVATE_KEY  |  base64 -d
+        - echo $SSH_PRIVATE_KEY  |  base64 -d | ssh-add -
+        # - cat id_rsa |  base64 -w0
+        - mkdir -p ~/.ssh
+        - chmod 700 ~/.ssh
+        - ssh-keyscan  -p 28488  45.62.123.30 > ~/.ssh/known_hosts  //xxxx替换为远程服务器的地址
+        - chmod 644 ~/.ssh/known_hosts
+    script:
+       - ssh -p 28488 45.62.123.30  echo hello > /tmp/tmp.txt
+       # - ssh -p 28488 45.62.123.30  mkdir /tmp/deploy1
+       - scp -P 28488 -r target/* 45.62.123.30:/tmp/      
