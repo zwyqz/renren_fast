@@ -70,6 +70,7 @@ build-job:       # This job runs in the build stage, which runs first.
 
 
 job_copy:
+    image: docker
     stage: job_copy
     tags:
         - personal
