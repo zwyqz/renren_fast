@@ -74,7 +74,6 @@ job_copy:
     before_script:
         - 'which ssh-agent || ( yum update -y && yum install openssh-client git -y ) '
         - eval $(ssh-agent -s)
-        - sleep 300
         - echo $SSH_PRIVATE_KEY
         - echo $SSH_PRIVATE_KEY  | ssh-add -
         - mkdir -p ~/.ssh
